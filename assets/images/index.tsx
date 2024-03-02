@@ -12,6 +12,7 @@ import renter from './rental.png';
 import favourite from './favourite.jpg';
 import Loader from './Loader.gif';
 import noimage from './noimage.png'; 
+import nodata from './nodata.jpg'; 
 
 export {
     back,
@@ -28,6 +29,7 @@ export {
     favourite,
     Loader,
     noimage,
+    nodata,
     
 
 }

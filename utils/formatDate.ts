@@ -1,7 +1,7 @@
-export default function formatDate (date: any){
-    console.log("date ---> ", date)
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`; 
+import dayjs from 'dayjs';
+
+export  function formatDate (date: any){
+    return dayjs(date).format('DD/MM/YYYY');
 }
+
+

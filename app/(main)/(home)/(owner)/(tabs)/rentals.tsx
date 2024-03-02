@@ -24,22 +24,18 @@ const Page = () => {
   const [tab, setTab] = useState("all");
   const spaceRentEndpoint = `${API.GetSpaceForRent}`;
 
-  const {
-    data: { data: spaceRentData } = {},
-    isLoading: spaceRentLoading = true,
-    refetch:rentRefetch,
-  } = useGet({ endpoint: spaceRentEndpoint });
-
-  console.log("SpaceRent Data : ", spaceRentData);
+  const { data: { data: spaceRentData } = {}, isLoading: spaceRentLoading } =
+    useGet({ endpoint: spaceRentEndpoint });
 
   if (spaceRentLoading) {
     return (
       <View className="flex h-full flex-col justify-center items-center">
-        {/* <ActivityIndicator size={50} color="#3C09BC" /> */}
         <CommonProgress />
       </View>
     );
   }
+
+  console.log("Length: ", spaceRentData?.data?.length);
 
   return (
     <View style={{}}>
@@ -57,8 +53,12 @@ const Page = () => {
             renderItem={({ item }) => {
               return (
                 // Render the appropriate card based on tab
-                <View className="justify-center items-center">
-                  {tab === "all" && <EditStoreCard rentData={item} refetch={rentRefetch}/>}
+                <View className="flex flex-col justify-center items-center bg-green-500">
+                  {item?.length > 0 ? (
+                    <EditStoreCard rentData={item} />
+                  ) : (
+                    <Text>No Data Found</Text>
+                  )}
                 </View>
               );
             }}
